@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x42C9C8D3AF5EA5E3 (agaida@siduction.org)
 #
 Name     : libqtxdg
-Version  : 3.3.0
-Release  : 1
-URL      : https://downloads.lxqt.org/downloads/libqtxdg/3.3.0/libqtxdg-3.3.0.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/libqtxdg/3.3.0/libqtxdg-3.3.0.tar.xz
-Source99 : https://downloads.lxqt.org/downloads/libqtxdg/3.3.0/libqtxdg-3.3.0.tar.xz.asc
+Version  : 3.3.1
+Release  : 2
+URL      : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz
+Source0  : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz
+Source99 : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz.asc
 Summary  : Library providing freedesktop.org XDG specs implementations for Qt.
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -18,6 +18,7 @@ Requires: libqtxdg-lib = %{version}-%{release}
 Requires: libqtxdg-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : lxqt-build-tools
 BuildRequires : qtbase-dev mesa-dev
 
 %description
@@ -39,6 +40,7 @@ Group: Development
 Requires: libqtxdg-lib = %{version}-%{release}
 Requires: libqtxdg-data = %{version}-%{release}
 Provides: libqtxdg-devel = %{version}-%{release}
+Requires: libqtxdg = %{version}-%{release}
 
 %description dev
 dev components for the libqtxdg package.
@@ -63,14 +65,14 @@ license components for the libqtxdg package.
 
 
 %prep
-%setup -q -n libqtxdg-3.3.0
+%setup -q -n libqtxdg-3.3.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549298713
+export SOURCE_DATE_EPOCH=1551226696
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -78,7 +80,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549298713
+export SOURCE_DATE_EPOCH=1551226696
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libqtxdg
 cp COPYING %{buildroot}/usr/share/package-licenses/libqtxdg/COPYING
@@ -114,7 +116,7 @@ popd
 /usr/include/qt5xdg/xdgmenuwidget.h
 /usr/include/qt5xdg/xdgmimetype.h
 /usr/include/qt5xdg/xmlhelper.h
-/usr/include/qt5xdgiconloader/3.3.0/private/xdgiconloader/xdgiconloader_p.h
+/usr/include/qt5xdgiconloader/3.3.1/private/xdgiconloader/xdgiconloader_p.h
 /usr/include/qt5xdgiconloader/xdgiconloader_export.h
 /usr/lib64/libQt5Xdg.so
 /usr/lib64/libQt5XdgIconLoader.so
@@ -124,9 +126,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libQt5Xdg.so.3
-/usr/lib64/libQt5Xdg.so.3.3.0
+/usr/lib64/libQt5Xdg.so.3.3.1
 /usr/lib64/libQt5XdgIconLoader.so.3
-/usr/lib64/libQt5XdgIconLoader.so.3.3.0
+/usr/lib64/libQt5XdgIconLoader.so.3.3.1
 /usr/lib64/qt5/plugins/iconengines/libQt5XdgIconPlugin.so
 
 %files license
