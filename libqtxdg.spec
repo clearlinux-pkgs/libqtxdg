@@ -6,7 +6,7 @@
 #
 Name     : libqtxdg
 Version  : 3.3.1
-Release  : 3
+Release  : 4
 URL      : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz
 Source0  : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz
 Source99 : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz.asc
