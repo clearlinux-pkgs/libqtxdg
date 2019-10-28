@@ -5,14 +5,15 @@
 # Source0 file verified with key 0x42C9C8D3AF5EA5E3 (agaida@siduction.org)
 #
 Name     : libqtxdg
-Version  : 3.3.1
-Release  : 7
-URL      : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz
-Source99 : https://downloads.lxqt.org/downloads/libqtxdg/3.3.1/libqtxdg-3.3.1.tar.xz.asc
-Summary  : No detailed summary available
+Version  : 3.4.0
+Release  : 8
+URL      : https://downloads.lxqt.org/downloads/libqtxdg/3.4.0/libqtxdg-3.4.0.tar.xz
+Source0  : https://downloads.lxqt.org/downloads/libqtxdg/3.4.0/libqtxdg-3.4.0.tar.xz
+Source1 : https://downloads.lxqt.org/downloads/libqtxdg/3.4.0/libqtxdg-3.4.0.tar.xz.asc
+Summary  : Library providing freedesktop.org XDG specs implementations for Qt.
 Group    : Development/Tools
 License  : LGPL-2.1
+Requires: libqtxdg-bin = %{version}-%{release}
 Requires: libqtxdg-data = %{version}-%{release}
 Requires: libqtxdg-lib = %{version}-%{release}
 Requires: libqtxdg-license = %{version}-%{release}
@@ -20,11 +21,22 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : lxqt-build-tools
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : util-linux
 
 %description
 An example of how to write an CMakeLists.txt to use libqtxdg.
 To build this example just use:
 cmake ..
+
+%package bin
+Summary: bin components for the libqtxdg package.
+Group: Binaries
+Requires: libqtxdg-data = %{version}-%{release}
+Requires: libqtxdg-license = %{version}-%{release}
+
+%description bin
+bin components for the libqtxdg package.
+
 
 %package data
 Summary: data components for the libqtxdg package.
@@ -38,8 +50,10 @@ data components for the libqtxdg package.
 Summary: dev components for the libqtxdg package.
 Group: Development
 Requires: libqtxdg-lib = %{version}-%{release}
+Requires: libqtxdg-bin = %{version}-%{release}
 Requires: libqtxdg-data = %{version}-%{release}
 Provides: libqtxdg-devel = %{version}-%{release}
+Requires: libqtxdg = %{version}-%{release}
 Requires: libqtxdg = %{version}-%{release}
 
 %description dev
@@ -65,32 +79,44 @@ license components for the libqtxdg package.
 
 
 %prep
-%setup -q -n libqtxdg-3.3.1
+%setup -q -n libqtxdg-3.4.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1556946106
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1572274465
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
+# -Werror is for werrorists
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1556946106
+export SOURCE_DATE_EPOCH=1572274465
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libqtxdg
-cp COPYING %{buildroot}/usr/share/package-licenses/libqtxdg/COPYING
+cp %{_builddir}/libqtxdg-3.4.0/COPYING %{buildroot}/usr/share/package-licenses/libqtxdg/a222eb7a5344a5c487bd633a6eb5810028d5a74e
 pushd clr-build
 %make_install
 popd
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/qtxdg-mat
 
 %files data
 %defattr(-,root,root,-)
@@ -105,6 +131,7 @@ popd
 /usr/include/qt5xdg/XdgIcon
 /usr/include/qt5xdg/XdgMenu
 /usr/include/qt5xdg/XdgMenuWidget
+/usr/include/qt5xdg/XdgMimeApps
 /usr/include/qt5xdg/XdgMimeType
 /usr/include/qt5xdg/XmlHelper
 /usr/include/qt5xdg/xdgaction.h
@@ -115,9 +142,10 @@ popd
 /usr/include/qt5xdg/xdgmacros.h
 /usr/include/qt5xdg/xdgmenu.h
 /usr/include/qt5xdg/xdgmenuwidget.h
+/usr/include/qt5xdg/xdgmimeapps.h
 /usr/include/qt5xdg/xdgmimetype.h
 /usr/include/qt5xdg/xmlhelper.h
-/usr/include/qt5xdgiconloader/3.3.1/private/xdgiconloader/xdgiconloader_p.h
+/usr/include/qt5xdgiconloader/3.4.0/private/xdgiconloader/xdgiconloader_p.h
 /usr/include/qt5xdgiconloader/xdgiconloader_export.h
 /usr/lib64/libQt5Xdg.so
 /usr/lib64/libQt5XdgIconLoader.so
@@ -127,11 +155,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libQt5Xdg.so.3
-/usr/lib64/libQt5Xdg.so.3.3.1
+/usr/lib64/libQt5Xdg.so.3.4.0
 /usr/lib64/libQt5XdgIconLoader.so.3
-/usr/lib64/libQt5XdgIconLoader.so.3.3.1
+/usr/lib64/libQt5XdgIconLoader.so.3.4.0
 /usr/lib64/qt5/plugins/iconengines/libQt5XdgIconPlugin.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libqtxdg/COPYING
+/usr/share/package-licenses/libqtxdg/a222eb7a5344a5c487bd633a6eb5810028d5a74e
