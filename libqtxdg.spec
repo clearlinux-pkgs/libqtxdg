@@ -6,11 +6,11 @@
 #
 Name     : libqtxdg
 Version  : 3.4.0
-Release  : 13
-URL      : https://downloads.lxqt.org/downloads/libqtxdg/3.4.0/libqtxdg-3.4.0.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/libqtxdg/3.4.0/libqtxdg-3.4.0.tar.xz
-Source1 : https://downloads.lxqt.org/downloads/libqtxdg/3.4.0/libqtxdg-3.4.0.tar.xz.asc
-Summary  : Library providing freedesktop.org XDG specs implementations for Qt.
+Release  : 14
+URL      : https://github.com/lxqt/libqtxdg/releases/download/3.4.0/libqtxdg-3.4.0.tar.xz
+Source0  : https://github.com/lxqt/libqtxdg/releases/download/3.4.0/libqtxdg-3.4.0.tar.xz
+Source1  : https://github.com/lxqt/libqtxdg/releases/download/3.4.0/libqtxdg-3.4.0.tar.xz.asc
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: libqtxdg-bin = %{version}-%{release}
@@ -19,6 +19,7 @@ Requires: libqtxdg-lib = %{version}-%{release}
 Requires: libqtxdg-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : liblxqt-data
 BuildRequires : lxqt-build-tools
 BuildRequires : qtbase-dev mesa-dev
 BuildRequires : util-linux
@@ -54,7 +55,6 @@ Requires: libqtxdg-bin = %{version}-%{release}
 Requires: libqtxdg-data = %{version}-%{release}
 Provides: libqtxdg-devel = %{version}-%{release}
 Requires: libqtxdg = %{version}-%{release}
-Requires: libqtxdg = %{version}-%{release}
 
 %description dev
 dev components for the libqtxdg package.
@@ -80,30 +80,30 @@ license components for the libqtxdg package.
 
 %prep
 %setup -q -n libqtxdg-3.4.0
+cd %{_builddir}/libqtxdg-3.4.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1572274465
+export SOURCE_DATE_EPOCH=1598294502
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1572274465
+export SOURCE_DATE_EPOCH=1598294502
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libqtxdg
 cp %{_builddir}/libqtxdg-3.4.0/COPYING %{buildroot}/usr/share/package-licenses/libqtxdg/a222eb7a5344a5c487bd633a6eb5810028d5a74e
