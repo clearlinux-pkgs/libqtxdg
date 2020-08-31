@@ -16,6 +16,7 @@ libQt5Xdg.so.3:_ZN11XdgMimeAppsC2EP7QObject
 libQt5Xdg.so.3:_ZN11XdgMimeAppsD0Ev
 libQt5Xdg.so.3:_ZN11XdgMimeAppsD1Ev
 libQt5Xdg.so.3:_ZN11XdgMimeAppsD2Ev
+libQt5Xdg.so.3:_ZN11XdgMimeType4swapERS_
 libQt5Xdg.so.3:_ZN11XdgMimeTypeC1ERK9QMimeType
 libQt5Xdg.so.3:_ZN11XdgMimeTypeC1ERKS_
 libQt5Xdg.so.3:_ZN11XdgMimeTypeC1Ev
