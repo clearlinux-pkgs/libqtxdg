@@ -42,6 +42,15 @@ libQt5Xdg.so.3:_ZN13XdgMenuWidgetD0Ev
 libQt5Xdg.so.3:_ZN13XdgMenuWidgetD1Ev
 libQt5Xdg.so.3:_ZN13XdgMenuWidgetD2Ev
 libQt5Xdg.so.3:_ZN13XdgMenuWidgetaSERKS_
+libQt5Xdg.so.3:_ZN14XdgDefaultApps10webBrowserEv
+libQt5Xdg.so.3:_ZN14XdgDefaultApps11emailClientEv
+libQt5Xdg.so.3:_ZN14XdgDefaultApps11fileManagerEv
+libQt5Xdg.so.3:_ZN14XdgDefaultApps11webBrowsersEv
+libQt5Xdg.so.3:_ZN14XdgDefaultApps12emailClientsEv
+libQt5Xdg.so.3:_ZN14XdgDefaultApps12fileManagersEv
+libQt5Xdg.so.3:_ZN14XdgDefaultApps13setWebBrowserERK14XdgDesktopFile
+libQt5Xdg.so.3:_ZN14XdgDefaultApps14setEmailClientERK14XdgDesktopFile
+libQt5Xdg.so.3:_ZN14XdgDefaultApps14setFileManagerERK14XdgDesktopFile
 libQt5Xdg.so.3:_ZN14XdgDesktopFile11removeEntryERK7QString
 libQt5Xdg.so.3:_ZN14XdgDesktopFile17setLocalizedValueERK7QStringRK8QVariant
 libQt5Xdg.so.3:_ZN14XdgDesktopFile2idERK7QStringb
