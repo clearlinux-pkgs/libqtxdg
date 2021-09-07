@@ -6,7 +6,7 @@
 #
 Name     : libqtxdg
 Version  : 3.7.1
-Release  : 20
+Release  : 21
 URL      : https://github.com/lxqt/libqtxdg/releases/download/3.7.1/libqtxdg-3.7.1.tar.xz
 Source0  : https://github.com/lxqt/libqtxdg/releases/download/3.7.1/libqtxdg-3.7.1.tar.xz
 Source1  : https://github.com/lxqt/libqtxdg/releases/download/3.7.1/libqtxdg-3.7.1.tar.xz.asc
@@ -19,7 +19,6 @@ Requires: libqtxdg-lib = %{version}-%{release}
 Requires: libqtxdg-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : liblxqt-dev
 BuildRequires : lxqt-build-tools
 BuildRequires : qtbase-dev mesa-dev
 
@@ -86,23 +85,23 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618583091
+export SOURCE_DATE_EPOCH=1631051784
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618583091
+export SOURCE_DATE_EPOCH=1631051784
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libqtxdg
 cp %{_builddir}/libqtxdg-3.7.1/COPYING %{buildroot}/usr/share/package-licenses/libqtxdg/a222eb7a5344a5c487bd633a6eb5810028d5a74e
