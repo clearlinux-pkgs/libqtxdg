@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBE793007AD22DF7E (tsujan2000@gmail.com)
 #
 Name     : libqtxdg
-Version  : 3.8.0
-Release  : 22
-URL      : https://github.com/lxqt/libqtxdg/releases/download/3.8.0/libqtxdg-3.8.0.tar.xz
-Source0  : https://github.com/lxqt/libqtxdg/releases/download/3.8.0/libqtxdg-3.8.0.tar.xz
-Source1  : https://github.com/lxqt/libqtxdg/releases/download/3.8.0/libqtxdg-3.8.0.tar.xz.asc
+Version  : 3.9.0
+Release  : 23
+URL      : https://github.com/lxqt/libqtxdg/releases/download/3.9.0/libqtxdg-3.9.0.tar.xz
+Source0  : https://github.com/lxqt/libqtxdg/releases/download/3.9.0/libqtxdg-3.9.0.tar.xz
+Source1  : https://github.com/lxqt/libqtxdg/releases/download/3.9.0/libqtxdg-3.9.0.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -77,15 +77,15 @@ license components for the libqtxdg package.
 
 
 %prep
-%setup -q -n libqtxdg-3.8.0
-cd %{_builddir}/libqtxdg-3.8.0
+%setup -q -n libqtxdg-3.9.0
+cd %{_builddir}/libqtxdg-3.9.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1636128817
+export SOURCE_DATE_EPOCH=1650291913
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -101,10 +101,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1636128817
+export SOURCE_DATE_EPOCH=1650291913
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libqtxdg
-cp %{_builddir}/libqtxdg-3.8.0/COPYING %{buildroot}/usr/share/package-licenses/libqtxdg/a222eb7a5344a5c487bd633a6eb5810028d5a74e
+cp %{_builddir}/libqtxdg-3.9.0/COPYING %{buildroot}/usr/share/package-licenses/libqtxdg/a222eb7a5344a5c487bd633a6eb5810028d5a74e
 pushd clr-build
 %make_install
 popd
@@ -147,7 +147,7 @@ popd
 /usr/include/qt5xdg/xdgmimeapps.h
 /usr/include/qt5xdg/xdgmimetype.h
 /usr/include/qt5xdg/xmlhelper.h
-/usr/include/qt5xdgiconloader/3.8.0/private/xdgiconloader/xdgiconloader_p.h
+/usr/include/qt5xdgiconloader/3.9.0/private/xdgiconloader/xdgiconloader_p.h
 /usr/include/qt5xdgiconloader/xdgiconloader_export.h
 /usr/lib64/libQt5Xdg.so
 /usr/lib64/libQt5XdgIconLoader.so
@@ -157,9 +157,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libQt5Xdg.so.3
-/usr/lib64/libQt5Xdg.so.3.8.0
+/usr/lib64/libQt5Xdg.so.3.9.0
 /usr/lib64/libQt5XdgIconLoader.so.3
-/usr/lib64/libQt5XdgIconLoader.so.3.8.0
+/usr/lib64/libQt5XdgIconLoader.so.3.9.0
 /usr/lib64/qt5/plugins/iconengines/libQt5XdgIconPlugin.so
 
 %files license
