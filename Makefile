@@ -1,5 +1,5 @@
 PKG_NAME := libqtxdg
-URL = https://github.com/lxqt/libqtxdg/releases/download/3.9.1/libqtxdg-3.9.1.tar.xz
+URL = https://github.com/lxqt/libqtxdg/releases/download/3.10.0/libqtxdg-3.10.0.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
